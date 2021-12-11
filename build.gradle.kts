@@ -19,10 +19,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.18-R0.1-SNAPSHOT")
 
     implementation(kotlin("stdlib"))
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    testImplementation("org.mockito:mockito-core:4.1.0")
+    implementation("io.github.monun:kommand-api:2.7.0")
 }
 
 project.extra.set("packageName", name.replace("-", ""))
@@ -35,11 +32,6 @@ tasks {
             expand(project.extra.properties)
         }
     }
-
-    test {
-        useJUnitPlatform()
-    }
-
     create<Jar>("paperJar") {
         from(sourceSets["main"].output)
         archiveBaseName.set(project.extra.properties["pluginName"].toString())
