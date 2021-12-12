@@ -1,4 +1,4 @@
-package com.chizstudio.misilelaboratory.doxaplugin.event
+package com.chizstudio.misilelaboratory.event
 
 import org.bukkit.Server
 import kotlin.concurrent.timer

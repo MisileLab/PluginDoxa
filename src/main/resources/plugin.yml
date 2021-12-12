@@ -1,6 +1,6 @@
 name: ${pluginName}
 version: ${version}
-main: ${group}.${packageName}.doxaplugin.DoxaPlugin
+main: ${group}.doxaplugin.DoxaPlugin
 api-version: 1.18
 libraries:
   - io.github.monun:kommand:2.7.0
