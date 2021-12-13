@@ -14,18 +14,12 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.entity.EntitySpawnEvent
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.scoreboard.Scoreboard
 
 class KillMoney: Listener {
     @EventHandler
     fun onJoin(e: PlayerJoinEvent) {
         setupscoreboard(e.player)
-    }
-
-    fun setupscoreboard(player: Player) {
-        val scoreboard = player.scoreboard
-        if (scoreboard.getObjective("money") == null) {
-            scoreboard.registerNewObjective("money", "dummy", Component.text("money"))
-        }
     }
 
     @EventHandler
@@ -82,5 +76,23 @@ class KillMoney: Listener {
                 killer.world.playSound(killer.location, Sound.BLOCK_CHAIN_BREAK, 1F, 1F)
             }
         }
+    }
+}
+
+fun setupscoreboard(player: Player) {
+    val scoreboard = player.scoreboard
+    val scoreboardsetuplist = setOf("money", "craftingrecipe", "furnacerecipe", "chestrecipe", "anvilrecipe",
+        "smithingtable", "enderchestrecipe", "shulkerchestrecipe", "beaconrecipe", "repeaterrecipe",
+        "comparatorrecipe", "observerrecipe", "pistonrecipe", "dispenserrecipe", "dropperrecipe",
+        "hopperrecipe", "tntrecipe", "woodenswordrecipe", "stoneswordrecipe", "goldenswordrecipe",
+        "ironswordrecipe", "diamondswordrecipe", "bowrecipe", "arrowrecipe", "woodentoolsrecipe",
+        "stonetoolsrecipe", "goldentoolsrecipe", "irontoolsrecipe", "diamondtoolsrecipe",
+        "shearrecipe", "shieldrecipe", "stickrecipe", "goldarmorrecipe", "letherarmorrecipe",
+        "diamondarmorrecipe") // buy.sk 501 start
+}
+
+fun setupscoreboardsub(scoreboard: Scoreboard, objective: String) {
+    if (scoreboard.getObjective(objective) == null) {
+        scoreboard.registerNewObjective(objective, "dummy", Component.text(objective))
     }
 }
