@@ -8,8 +8,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
 /*
-class ShopHandler {
-}
+ShopHandler Class
 */
 
 class InventoryHandler(holder: Player, y: Int, title: String) {
