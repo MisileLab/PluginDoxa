@@ -1,4 +1,6 @@
-Just plugin for doxa97
+Just plugin for doxa97, built with Kotlin.
+
+This plugin has gpl license.
 
 # Installation
 
