@@ -16,7 +16,8 @@ import org.bukkit.event.entity.EntitySpawnEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.scoreboard.Scoreboard
 
-class KillMoney: Listener {
+class Money: Listener {
+
     @EventHandler
     fun onJoin(e: PlayerJoinEvent) {
         setupscoreboard(e.player)
@@ -88,7 +89,10 @@ fun setupscoreboard(player: Player) {
         "ironswordrecipe", "diamondswordrecipe", "bowrecipe", "arrowrecipe", "woodentoolsrecipe",
         "stonetoolsrecipe", "goldentoolsrecipe", "irontoolsrecipe", "diamondtoolsrecipe",
         "shearrecipe", "shieldrecipe", "stickrecipe", "goldarmorrecipe", "letherarmorrecipe",
-        "diamondarmorrecipe") // buy.sk 501 start
+        "diamondarmorrecipe",)
+    for (setupstring in scoreboardsetuplist) {
+        setupscoreboardsub(scoreboard, setupstring)
+    }
 }
 
 fun setupscoreboardsub(scoreboard: Scoreboard, objective: String) {
