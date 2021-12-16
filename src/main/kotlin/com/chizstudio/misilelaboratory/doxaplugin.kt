@@ -16,4 +16,8 @@ class DoxaPlugin: JavaPlugin() {
             AnnouncementChat().announcementtimer(server)
         }
     }
+
+    fun returnme(): DoxaPlugin {
+        return this
+    }
 }

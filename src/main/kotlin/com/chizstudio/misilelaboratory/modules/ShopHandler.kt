@@ -1,5 +1,6 @@
 package com.chizstudio.misilelaboratory.modules
 
+import com.chizstudio.misilelaboratory.DoxaPlugin
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -31,6 +32,15 @@ class InventoryHandler(holder: Player, y: Int, title: String) {
     private var selfy = y
     private var selffunctions: MutableMap<Int, (Player) -> Unit>? = null
     private var listeningInventory = ListeningInventory(this)
+
+    init {
+        val plugin = getPlugin()
+        plugin.server.pluginManager.registerEvents(listeningInventory, plugin)
+    }
+
+    private fun getPlugin(): DoxaPlugin {
+        return DoxaPlugin().returnme()
+    }
 
     fun changey(y: Int, autoreload: Boolean = true) {
         selfy = y
