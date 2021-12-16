@@ -4,6 +4,10 @@ import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
 class ShopHandler(player: Player) {
@@ -25,6 +29,8 @@ class InventoryHandler(holder: Player, y: Int, title: String) {
     private var selfholder = holder
     private var selftitle = title
     private var selfy = y
+    private var selffunctions: MutableMap<Int, (Player) -> Unit>? = null
+    private var listeningInventory = ListeningInventory(this)
 
     fun changey(y: Int, autoreload: Boolean = true) {
         selfy = y
@@ -48,7 +54,7 @@ class InventoryHandler(holder: Player, y: Int, title: String) {
         }
     }
 
-    fun reload() {
+    private fun reload() {
         selfinventory = Bukkit.createInventory(selfholder, (selfy * 8), Component.text(selftitle))
     }
 
@@ -60,5 +66,43 @@ class InventoryHandler(holder: Player, y: Int, title: String) {
         }
         itemmeta.lore(lore)
         selfinventory.setItem(index, itemstack)
+    }
+
+    fun setfunctioninitem(index: Int, function: (Player) -> Unit) {
+        if (selffunctions == null) {
+            selffunctions = mutableMapOf(index to function)
+        }
+        else {
+            selffunctions!![index] = function
+        }
+    }
+
+    fun returnholder(): Player {
+        return selfholder
+    }
+
+    fun returninventory(): Inventory {
+        return selfinventory
+    }
+
+    fun returnfunctions(): MutableMap<Int, (Player) -> Unit>? {
+        return selffunctions
+    }
+}
+
+class ListeningInventory(private val inventoryHandler: InventoryHandler): Listener {
+
+    @EventHandler
+    fun whenClickedInventory(e: InventoryClickEvent) {
+        val functions = inventoryHandler.returnfunctions()
+        val inventory = inventoryHandler.returninventory()
+        if ((functions != null) || (e.inventory != inventory)) {
+            val holder = inventoryHandler.returnholder()
+            val clickeditemslot = e.rawSlot
+            if ((functions != null) && (functions[clickeditemslot] != null)) {
+                val function = functions[clickeditemslot]
+                function?.let { it(holder) }
+            }
+        }
     }
 }
