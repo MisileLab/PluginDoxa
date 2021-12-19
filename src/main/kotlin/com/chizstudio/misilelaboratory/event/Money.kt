@@ -89,7 +89,7 @@ fun setupscoreboard(player: Player) {
         "ironswordrecipe", "diamondswordrecipe", "bowrecipe", "arrowrecipe", "woodentoolsrecipe",
         "stonetoolsrecipe", "goldentoolsrecipe", "irontoolsrecipe", "diamondtoolsrecipe",
         "shearrecipe", "shieldrecipe", "stickrecipe", "goldarmorrecipe", "letherarmorrecipe",
-        "diamondarmorrecipe",)
+        "diamondarmorrecipe", "nametagchange")
     for (setupstring in scoreboardsetuplist) {
         setupscoreboardsub(scoreboard, setupstring)
     }
