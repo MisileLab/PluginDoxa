@@ -1,6 +1,7 @@
 package com.chizstudio.misilelaboratory.modules
 
 import com.chizstudio.misilelaboratory.DoxaPlugin
+import io.github.monun.kommand.kommand
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -13,7 +14,22 @@ import org.bukkit.inventory.ItemStack
 
 class ShopHandler(player: Player) {
     private var inventoryhandler = InventoryHandler(player, 1, "상점")
-    fun setupguimain() {
+
+    private fun getplugin(): DoxaPlugin {
+        return DoxaPlugin().returnme()
+    }
+
+    fun setupKommand() {
+        getplugin().kommand {
+            register("상점") {
+                executes {
+                    setupguimain()
+                }
+            }
+        }
+    }
+
+    private fun setupguimain() {
         inventoryhandler.changetitle("상점")
         inventoryhandler.changeinventory(Material.CRAFTING_TABLE, 1, name="&f상호 블럭", lore=convertstring("&f상호작용이 가능한 블럭들의 조합법을 익힐 수 있습니다."))
         inventoryhandler.changeinventory(Material.DIAMOND_PICKAXE, 3, name="&f장비 및 도구", lore=convertstring("&f장비와 도구들의 조합법을 익힐 수 있습니다."))
@@ -38,7 +54,7 @@ class ShopHandler(player: Player) {
     }
 
     private fun setupguitoolsandarmor() {
-        val scorenametag = inventoryhandler.returnholder().scoreboard.getObjective("scoreboardnametag")?.getScore(inventoryhandler.returnholder().name)
+        val scorenametag = inventoryhandler.returnholder().scoreboard.getObjective("nametagchange")?.getScore(inventoryhandler.returnholder().name)
         inventoryhandler.changetitle("장비 및 도구")
         inventoryhandler.changeinventory(Material.DIAMOND_PICKAXE, 0, name="&f도구")
         inventoryhandler.changeinventory(Material.DIAMOND_SWORD, 1, name="&f무기")
@@ -49,12 +65,22 @@ class ShopHandler(player: Player) {
         inventoryhandler.changeinventory(Material.STICK, 7, name="&f막대기 조합법", lore=convertstring("&6구매가격 : &f3원"))
         inventoryhandler.changeinventory(Material.BARRIER, 8, name="&f뒤로가기")
         inventoryhandler.setfunctioninitem(0) { setupguitools() }
+        inventoryhandler.setfunctioninitem(4) { nametagscoreboardchange() }
+        inventoryhandler.setfunctioninitem(5) { nametagget() }
         inventoryhandler.setfunctioninitem(8) { setupguimain() }
     }
 
     private fun nametagget() {
         val playerinventory = inventoryhandler.returnholder().inventory
         playerinventory.addItem(ItemStack(Material.NAME_TAG))
+        nametagscoreboardchange()
+    }
+
+    private fun nametagscoreboardchange() {
+        val player = inventoryhandler.returnholder()
+        val scoreboard = player.scoreboard
+        var nametagscoreboard = scoreboard.getObjective("nametagchange")?.getScore(player.name)?.score!!
+        nametagscoreboard += 1
     }
 
     private fun setupguitools() {
