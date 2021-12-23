@@ -82,14 +82,7 @@ class Money: Listener {
 
 fun setupscoreboard(player: Player) {
     val scoreboard = player.scoreboard
-    val scoreboardsetuplist = setOf("money", "craftingrecipe", "furnacerecipe", "chestrecipe", "anvilrecipe",
-        "smithingtable", "enderchestrecipe", "shulkerchestrecipe", "beaconrecipe", "repeaterrecipe",
-        "comparatorrecipe", "observerrecipe", "pistonrecipe", "dispenserrecipe", "dropperrecipe",
-        "hopperrecipe", "tntrecipe", "woodenswordrecipe", "stoneswordrecipe", "goldenswordrecipe",
-        "ironswordrecipe", "diamondswordrecipe", "bowrecipe", "arrowrecipe", "woodentoolsrecipe",
-        "stonetoolsrecipe", "goldentoolsrecipe", "irontoolsrecipe", "diamondtoolsrecipe",
-        "shearrecipe", "shieldrecipe", "stickrecipe", "goldarmorrecipe", "letherarmorrecipe",
-        "diamondarmorrecipe", "nametagchange")
+    val scoreboardsetuplist = setOf("money", "nametagchange")
     for (setupstring in scoreboardsetuplist) {
         setupscoreboardsub(scoreboard, setupstring)
     }

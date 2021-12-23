@@ -30,17 +30,20 @@ class ShopHandler(player: Player) {
     }
 
     private fun setupguimain() {
-        inventoryhandler.changetitle("상점")
+        inventoryhandler.changetitle("상점", false)
+        inventoryhandler.changey(1)
         inventoryhandler.changeinventory(Material.CRAFTING_TABLE, 1, name="&f상호 블럭", lore=convertstring("&f상호작용이 가능한 블럭들의 조합법을 익힐 수 있습니다."))
         inventoryhandler.changeinventory(Material.DIAMOND_PICKAXE, 3, name="&f장비 및 도구", lore=convertstring("&f장비와 도구들의 조합법을 익힐 수 있습니다."))
         inventoryhandler.changeinventory(Material.REDSTONE, 5, name="&f장비 및 도구", lore=convertstring("&f장비와 도구들의 조합법을 익힐 수 있습니다."))
         inventoryhandler.changeinventory(Material.PAPER, 7, name="&f판매 및 구매", lore=convertstring("&f물건들을 판매하거나 구매할 수 있습니다."))
         inventoryhandler.setfunctioninitem(1) { setupguiinteractionblock() }
-        inventoryhandler.setfunctioninitem(2) { setupguitoolsandarmor() }
+        inventoryhandler.setfunctioninitem(3) { setupguitoolsandarmor() }
+        inventoryhandler.setfunctioninitem(5) { setupguiredstone() }
     }
 
     private fun setupguiinteractionblock() {
-        inventoryhandler.changetitle("상호 블럭")
+        inventoryhandler.changetitle("상호 블럭", false)
+        inventoryhandler.changey(1)
         inventoryhandler.changeinventory(Material.CRAFTING_TABLE, 0, name="&f제작대 조합법", lore=convertstring("&6구매가격 : &f5원"))
         inventoryhandler.changeinventory(Material.FURNACE, 1, name="&f화로 조합법", lore=convertstring("&6구매가격 : &f15원"))
         inventoryhandler.changeinventory(Material.CHEST, 2, name="&f상자 조합법", lore=convertstring("&6구매가격 : &f100원"))
@@ -55,7 +58,8 @@ class ShopHandler(player: Player) {
 
     private fun setupguitoolsandarmor() {
         val scorenametag = inventoryhandler.returnholder().scoreboard.getObjective("nametagchange")?.getScore(inventoryhandler.returnholder().name)
-        inventoryhandler.changetitle("장비 및 도구")
+        inventoryhandler.changetitle("장비 및 도구", false)
+        inventoryhandler.changey(1)
         inventoryhandler.changeinventory(Material.DIAMOND_PICKAXE, 0, name="&f도구")
         inventoryhandler.changeinventory(Material.DIAMOND_SWORD, 1, name="&f무기")
         inventoryhandler.changeinventory(Material.DIAMOND_CHESTPLATE, 2, name="&f갑옷")
@@ -84,7 +88,8 @@ class ShopHandler(player: Player) {
     }
 
     private fun setupguitools() {
-        inventoryhandler.changetitle("도구")
+        inventoryhandler.changetitle("도구", false)
+        inventoryhandler.changey(1)
         inventoryhandler.changeinventory(Material.WOODEN_PICKAXE, 0, name="&f나무 도구 조합법", lore=convertstring("&6구매가격 : &f15원"))
         inventoryhandler.changeinventory(Material.STONE_PICKAXE, 1, name="&f돌 도구 조합법", lore=convertstring("&6구매가격 : &f50원"))
         inventoryhandler.changeinventory(Material.GOLDEN_PICKAXE, 2, name="&f황금 도구 조합법", lore=convertstring("&6구매가격 : &f35원"))
@@ -95,6 +100,21 @@ class ShopHandler(player: Player) {
         inventoryhandler.changeinventory(Material.SADDLE, 7, name="&f안장", lore=convertstring("&6구매가격 : &f12500원"))
         inventoryhandler.changeinventory(Material.BARRIER, 8, name="&f뒤로가기")
         inventoryhandler.setfunctioninitem(8) { setupguitoolsandarmor() }
+    }
+
+    private fun setupguiredstone() {
+        inventoryhandler.changetitle("레드스톤", false)
+        inventoryhandler.changey(1)
+        inventoryhandler.changeinventory(Material.REPEATER, 0, name="&f중계기 조합법", lore=convertstring("&6구매가격 : &f25000원"))
+        inventoryhandler.changeinventory(Material.COMPARATOR, 1, name="&f비교기 조합법", lore=convertstring("&6구매가격 : &f30000원"))
+        inventoryhandler.changeinventory(Material.OBSERVER, 2, name="&f관측기 조합법", lore=convertstring("&6구매가격 : &f100000원"))
+        inventoryhandler.changeinventory(Material.PISTON, 3, name="&f피스톤 조합법", lore=convertstring("&6구매가격 : &f100000원"))
+        inventoryhandler.changeinventory(Material.DISPENSER, 4, name="&f발사기 조합법", lore=convertstring("&6구매가격 : &f75000원"))
+        inventoryhandler.changeinventory(Material.DROPPER, 5, name="&f공급기 조합법", lore=convertstring("&6구매가격 : &f75000원"))
+        inventoryhandler.changeinventory(Material.HOPPER, 6, name="&f호퍼 조합법", lore=convertstring("&6구매가격 : &f125000원"))
+        inventoryhandler.changeinventory(Material.TNT, 7, name="&fTNT 조합법", lore=convertstring("&6구매가격 : &f500000원"))
+        inventoryhandler.changeinventory(Material.BARRIER, 8, name="&f뒤로가기")
+        inventoryhandler.setfunctioninitem(8) { setupguimain() }
     }
 
     private fun convertstring(string: String): List<Component> {
