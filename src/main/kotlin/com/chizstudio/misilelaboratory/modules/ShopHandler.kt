@@ -12,24 +12,25 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
-class ShopHandler(player: Player) {
-    private var inventoryhandler = InventoryHandler(player, 1, "상점")
-
-    private fun getplugin(): DoxaPlugin {
-        return DoxaPlugin().returnme()
-    }
-
-    fun setupKommand() {
-        getplugin().kommand {
-            register("상점") {
-                executes {
-                    setupguimain()
-                }
+fun setupKommand() {
+    getplugin().kommand {
+        register("상점") {
+            executes {
+                val player = sender as Player
+                ShopHandler(player).setupguimain()
             }
         }
     }
+}
 
-    private fun setupguimain() {
+fun getplugin(): DoxaPlugin {
+    return DoxaPlugin().returnme()
+}
+
+class ShopHandler(player: Player) {
+    private var inventoryhandler = InventoryHandler(player, 1, "상점")
+
+    fun setupguimain() {
         inventoryhandler.changetitle("상점", false)
         inventoryhandler.changey(1)
         inventoryhandler.changeinventory(Material.CRAFTING_TABLE, 1, name="&f상호 블럭", lore=convertstring("&f상호작용이 가능한 블럭들의 조합법을 익힐 수 있습니다."))

@@ -3,6 +3,7 @@ package com.chizstudio.misilelaboratory
 import com.chizstudio.misilelaboratory.event.AnnouncementChat
 import com.chizstudio.misilelaboratory.event.CreeperDontExplosion
 import com.chizstudio.misilelaboratory.event.Money
+import com.chizstudio.misilelaboratory.modules.setupKommand
 import io.github.monun.heartbeat.coroutines.HeartbeatScope
 import kotlinx.coroutines.launch
 import org.bukkit.plugin.java.JavaPlugin
@@ -15,6 +16,7 @@ class DoxaPlugin: JavaPlugin() {
         HeartbeatScope().launch {
             AnnouncementChat().announcementtimer(server)
         }
+        setupKommand()
     }
 
     fun returnme(): DoxaPlugin {
