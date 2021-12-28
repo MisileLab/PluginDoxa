@@ -16,10 +16,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.18-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
-    implementation("io.github.monun:kommand-api:2.7.0")
+    implementation("io.github.monun:kommand-api:2.8.0")
     implementation("io.github.monun:heartbeat-coroutines:0.0.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-RC2")
 }
