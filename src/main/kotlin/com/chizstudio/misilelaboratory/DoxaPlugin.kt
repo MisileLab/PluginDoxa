@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import org.bukkit.plugin.java.JavaPlugin
 
 @Suppress("unused")
-class DoxaPlugin: JavaPlugin() {
+class DoxaPlugin : JavaPlugin() {
     override fun onEnable() {
         server.pluginManager.registerEvents(CreeperDontExplosion(), this)
         server.pluginManager.registerEvents(Money(), this)

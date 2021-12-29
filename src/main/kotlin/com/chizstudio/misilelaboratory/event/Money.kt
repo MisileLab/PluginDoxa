@@ -16,7 +16,7 @@ import org.bukkit.event.entity.EntitySpawnEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.scoreboard.Scoreboard
 
-class Money: Listener {
+class Money : Listener {
 
     @EventHandler
     fun onJoin(e: PlayerJoinEvent) {
