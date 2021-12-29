@@ -40,6 +40,7 @@ class ShopHandler(player: Player) {
         inventoryhandler.setfunctioninitem(1) { setupguiinteractionblock() }
         inventoryhandler.setfunctioninitem(3) { setupguitoolsandarmor() }
         inventoryhandler.setfunctioninitem(5) { setupguiredstone() }
+        inventoryhandler.setfunctioninitem(7) { setupguisellandbuy() }
     }
 
     private fun setupguiinteractionblock() {
@@ -114,6 +115,21 @@ class ShopHandler(player: Player) {
         inventoryhandler.changeinventory(Material.DROPPER, 5, name="&f공급기 조합법", lore=convertstring("&6구매가격 : &f75000원"))
         inventoryhandler.changeinventory(Material.HOPPER, 6, name="&f호퍼 조합법", lore=convertstring("&6구매가격 : &f125000원"))
         inventoryhandler.changeinventory(Material.TNT, 7, name="&fTNT 조합법", lore=convertstring("&6구매가격 : &f500000원"))
+        inventoryhandler.changeinventory(Material.BARRIER, 8, name="&f뒤로가기")
+        inventoryhandler.setfunctioninitem(8) { setupguimain() }
+    }
+
+    private fun setupguisellandbuy() {
+        inventoryhandler.changetitle("판매 및 구매", false)
+        inventoryhandler.changey(1)
+        inventoryhandler.changeinventory(Material.WHITE_CONCRETE, 0, name="&f인테리어", lore=convertstring("&f인테리어 물품을 모두 30,000원에 구매 가능합니다."))
+        inventoryhandler.changeinventory(Material.OAK_LOG, 1, name="&f나무", lore=convertstring("&f벌목을 통해 얻은 나무를 구매하거나 판매할 수 있습니다."))
+        inventoryhandler.changeinventory(Material.DIAMOND, 2, name="&f광물", lore=convertstring("&f광질을 통해 얻은 광물을 구매하거나 판매할 수 있습니다."))
+        inventoryhandler.changeinventory(Material.WHEAT, 3, name="&f작물", lore=convertstring("&f농사를 통해 얻은 작물을 구매하거나 판매할 수 있습니다."))
+        inventoryhandler.changeinventory(Material.ROTTEN_FLESH, 4, name="&f사냥", lore=convertstring("&f사냥을 통해 얻은 전리품을 판매할 수 있습니다."))
+        inventoryhandler.changeinventory(Material.COOKED_BEEF, 5, name="&f요리", lore=convertstring("&f재료를 요리하여 만든 제품을 판매할 수 있습니다."))
+        inventoryhandler.changeinventory(Material.ENCHANTED_BOOK, 6, name="&f인챈트 테이블", lore=convertstring("&6구매가격 : &f275000원"))
+        inventoryhandler.changeinventory(Material.COD, 7, name="&f낚시", lore=convertstring("&6낚시와 관련된 상품을 판매할 수 있습니다."))
         inventoryhandler.changeinventory(Material.BARRIER, 8, name="&f뒤로가기")
         inventoryhandler.setfunctioninitem(8) { setupguimain() }
     }
