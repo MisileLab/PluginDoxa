@@ -6,9 +6,9 @@ import kotlin.concurrent.timer
 class AnnouncementChat {
     private var announcementnumber: Int? = null
     fun announcementtimer(server: Server) {
-       timer(period = (1000L * 300L), initialDelay = (1000L * 300L)) {
-           announcement(server)
-       }
+        timer(period = (1000L * 300L), initialDelay = (1000L * 300L)) {
+            announcement(server)
+        }
     }
 
     private fun announcement(server: Server) {

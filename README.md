@@ -1,5 +1,5 @@
-Just plugin for doxa97
+Just plugin for doxa97, built with Kotlin.
 
 # Installation
 
-Just download [this link](https://nightly.link/MisileLab/PluginDoxa/workflows/build/master/build-artifacts.zip)
+Just download in [this link](https://nightly.link/MisileLab/PluginDoxa/workflows/build/master/build-artifacts.zip)
